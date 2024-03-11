@@ -1,0 +1,74 @@
+#include<iostream>
+
+using namespace std;
+
+class Calculator {
+public:
+    // Overloaded compute methods
+    int compute(int a, int b) {
+        return a + b;
+    }
+
+    float compute(int a, float b) {
+        return static_cast<float>(a) + b;
+    }
+
+    double compute(int a, double b) {
+        return static_cast<double>(a) + b;
+    }
+
+    int compute(char a, char b) {
+        return static_cast<int>(a) + static_cast<int>(b);
+    }
+
+    int compute(char a, int b) {
+        return static_cast<int>(a) + b;
+    }
+
+    // Compute method that handles no parameters
+    int compute() {
+        return 0;
+    }
+
+    // Compute method that handles one parameter
+    template<typename T>
+    T compute(T a) {
+        return a;
+    }
+
+    // Compute method that handles two parameters of the same type
+    template<typename T>
+    T compute(T a, T b) {
+        return a + b;
+    }
+};
+
+int main() {
+    Calculator calc;
+
+    // Perform calculations on two integers
+    cout << "Compute(2, 3): " << calc.compute(2, 3) << endl;
+
+    // Perform calculations on one integer and one float
+    cout << "Compute(2, 3.5f): " << calc.compute(2, 3.5f) << endl;
+
+    // Perform calculations on one integer and one double
+    cout << "Compute(2, 3.5): " << calc.compute(2, 3.5) <<endl;
+
+    // Perform calculations on two characters
+    cout << "Compute('a', 'b'): " << calc.compute('a', 'b') << endl;
+
+    // Perform calculations on one character and one integer
+    cout << "Compute('a', 2): " << calc.compute('a', 2) <<endl;
+
+    // Perform calculations with no parameters
+    cout << "Compute(): " << calc.compute() <<endl;
+
+    // Perform calculations with one parameter
+    cout << "Compute(5): " << calc.compute(5) <<endl;
+
+    // Perform calculations with two parameters of the same type
+    cout << "Compute(5, 6): " << calc.compute(5, 6) << endl;
+
+    return 0;
+}
