@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class User {
+private:
+    string name;
+    int birth_year;
+    int birth_day;
+    int birth_month;
+    double salary;
+
+public:
+    // Constructor
+    User(string name, int birth_year, int birth_month, int birth_day, double salary)
+        : name(name), birth_year(birth_year), birth_month(birth_month), birth_day(birth_day), salary(salary) {}
+
+    // Getters
+    string getName() const { return name; }
+    int getBirthYear() const { return birth_year; }
+    int getBirthMonth() const { return birth_month; }
+    int getBirthDay() const { return birth_day; }
+    double getSalary() const { return salary; }
+
+    // Setters
+    void setName(const string& name) { this->name = name; }
+    void setBirthYear(int birth_year) { this->birth_year = birth_year; }
+    void setBirthMonth(int birth_month) { this->birth_month = birth_month; }
+    void setBirthDay(int birth_day) { this->birth_day = birth_day; }
+    void setSalary(double salary) { this->salary = salary; }
+
+    // Comparison
+    int compare(const User& other) const {
+        if (birth_year < other.birth_year) return 1;
+        if (birth_year > other.birth_year) return -1;
+        if (birth_month < other.birth_month) return 1;
+        if (birth_month > other.birth_month) return -1;
+        if (birth_day < other.birth_day) return 1;
+        if (birth_day > other.birth_day) return -1;
+        return 0;
+    }
+
+    // Average salary
+    double averageSalary(const User& other) const {
+        return (salary + other.salary) / 2;
+    }
+
+    // Salary increment
+    void incrementSalary(double percentage) {
+        salary += salary * (percentage / 100);
+    }
+
+    // Display user details
+    void displayUserDetails() const {
+        cout << "Name: " << name << std::endl;
+        cout << "Birth Year: " << birth_year << std::endl;
+        cout << "Birth Month: " << birth_month << std::endl;
+        cout << "Birth Day: " << birth_day << std::endl;
+        cout << "Salary: " << salary << std::endl;
+    }
+};
+
+int main() {
+    User user1("John", 1990, 1, 1, 50000);
+    User user2("Jane", 1985, 6, 15, 60000);
+
+    int result = user1.compare(user2);
+    cout << "Comparison result: " << result << endl;
+
+    double average_sal = user1.averageSalary(user2);
+    cout << "Average Salary: " << average_sal << endl;
+
+    user1.incrementSalary(5);
+    user2.incrementSalary(10);
+
+    cout << "User1 Details: " << endl;
+    user1.displayUserDetails();
+
+    cout << "User2 Details: " << endl;
+    user2.displayUserDetails();
+
+    return 0;
+}
