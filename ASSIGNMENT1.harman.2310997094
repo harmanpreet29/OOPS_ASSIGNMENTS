@@ -1,0 +1,113 @@
+#include<iostream>
+#include <string>
+using namespace std;
+
+ long arr[2][100];
+ double amount[100]={0};
+ int index=0;
+ 
+		void printIntroMenu(){
+			cout<<"Please select an option from the menu below: "<<endl
+	            <<"l-> login\n"
+	            <<"c -> create new account\n"
+	            <<"q -> Quit\n"
+	            <<">";
+		}
+		void printMainMenu(){
+			cout<<"d -> Deposite Money\n"
+			    <<"w -> Withdraw Money\n"
+			    <<"r -> Request Balance\n"
+			    <<"q -> Quit\n"
+			    <<"<";
+		}
+		void start(){
+			char choice;
+			do{
+				cout<<"Hi! Welcome to Mr.Zamer ATM Machine!\n";
+				printIntroMenu();
+				cin>>choice;
+				switch(choice){
+					case 'l':
+						login();
+						break;
+						
+				   case 'c':
+				   	createAccount();
+				   	break;
+				  
+				   case 'q':
+				   	cout<<"Thanks for stopping by!\n";
+				   	exit(0);
+				   	break;
+				   
+				   default:
+				   	cout<<"Invalid option. please try again.\n";
+				}
+			} while(choice != 'q');
+		}
+		
+		void login(){
+			char choice;
+			double money;
+			long userId,password;
+			int curr=0;
+			cout<<"Please enter your user id: ";
+			cin>>userId;
+			cout<<"Please enter your user password: ";
+			cin>>password;
+			for(int i=0;i<100;i++){
+				if(arr[0][i] ==userId && arr[1][i] ==password){
+					cout<<"Accessgranted!\n";
+					curr = i;
+				
+					}
+				}
+				do{
+					printMainMenu();
+					cin>>choice;
+					switch(choice){
+						case 'd':
+							cout<<"Amount of deposit: $";
+							cin>> money;
+							cout<<"Amount deposited!\n";
+							break;
+							case 'w':
+								cout<<"Amount withdrawl: $";
+								cin >> money;
+								amount[curr]-=money;
+								break;
+								
+								case 'r':
+									cout << "your balance: $" << amount[curr] << endl;
+									break;
+									
+									default: cout << "Enter valid option!";
+					}
+					
+				} while(choice != q);
+			} else {
+				cout << "Login failed!" << endl;
+			}
+			
+			
+			void createAccount() {
+				long userId, passWord;
+				cout << "Please enter UserId: ";
+				cin >> userId;
+				cout << "Please enter your password: ";
+				cin >> password;
+				for(int i=0; i<100; i++) {
+					if(arr[0][i]==userId) {
+						cout << "User Id already exits!" << endl;
+						return;
+					}
+				}
+				arr[0][index] = userId;
+				arr[1][index] = password;
+				index++;
+				
+			}
+			int main() {
+				start();
+				return 0;
+			}
