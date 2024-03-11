@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+class sample {
+public:
+    typedef int (sample::*ComputeFunc)();
+
+    int Compute(ComputeFunc func) {
+        return (this->*func)();
+    }
+
+    int findFactorial(int n) {
+        int fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+        return fact;
+    }
+
+    int findSquare(int n) {
+        return n * n;
+    }
+
+    int findCube(int n) {
+        return n * n * n;
+    }
+};
+
+int main(int argc, char *argv[]) {
+     if(argc < 2) {
+        std::cout << "Please pass the value of N as a command line argument" << std::endl;
+        return 1;
+    }
+
+    // Convert the command line argument to an integer
+    int n = std::stoi(argv[1]);
+
+    // Call the compute function with the findFactorial function as an argument
+    int result = compute(n, findFactorial);
+
+    // Print the result
+    std::cout << "The result is: " << result << std::endl
+    return 0;
+}
