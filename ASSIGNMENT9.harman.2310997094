@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class demo {
+private:
+    float height;
+
+public:
+    demo() {}
+    demo(float H) {
+        height = H;
+    }
+
+    void show() {
+        cout << height << endl;
+    }
+
+    friend demo operator+(float h, demo obj) {
+        return demo(h + obj.height);
+    }
+
+    friend demo operator-(float h, demo obj) {
+        return demo(h - obj.height);
+    }
+};
+
+int main() {
+    float h;
+    cout << "Enter a value for h: ";
+    cin >> h;
+    demo obj1(165.2);
+    demo obj2 = h + obj1;
+    demo obj3 = h - obj1;
+    obj2.show();
+    obj3.show();
+
+    return 0;
+}
