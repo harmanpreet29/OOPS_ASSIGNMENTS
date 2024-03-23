@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+int calculateSeriesTerm(int i) {
+    return (i * (i + 1)) / 2;
+}
+
+int calculateSeriesSum(int n) {
+    int sum = 0;
+    for(int i = 1; i <= n; i++) {
+        sum += calculateSeriesTerm(i);
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    cout << "Enter a positive integer: ";
+    cin >> n;
+    cout << "The sum of the series is: " << calculateSeriesSum(n) << endl;
+    return 0;
+}
